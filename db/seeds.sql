@@ -1,0 +1,5 @@
+-- Create 3 insert queries 
+INSERT INTO burgers (burger_name) VALUES
+("ALPINE STEAK HOUSE BURGER"),
+("CLASSIC BYPASS BURGER"),
+("KA’MANA WA’NA LEI’YA BURGER");

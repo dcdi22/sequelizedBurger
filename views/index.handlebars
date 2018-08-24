@@ -1,0 +1,36 @@
+<header>
+	<h1>Eat Da Burger!</h1>
+</header><!-- /header -->
+
+<div class="wrapper">
+	<div id="create-burger">
+		<form action="/" method="POST">
+			<input id="burger-name" type="text" name="burger_name" placeholder="Create a burger">
+			<button id="submit-btn" type="submit" class="btn-primary">Rustle Up The Grub</button>
+		</form>
+	</div>
+
+	<section id="burgers-container">
+		<div id="burgers-available">
+			<h2>Burgers Available</h2>
+			{{#each burgers}}
+				{{#unless this.devoured}}
+				  <div class="burger">
+				    <form class="devour-burger-form" action="/{{id}}" name="id" method="GET">
+				  		<button type="submit" class="eat-btn btn-primary">EAT</button>
+				    </form>
+						 <span>#{{id}} </span>{{burger_name}}
+				  </div>
+				{{/unless}}
+			{{/each}}
+		</div>
+		<div id="burgers-devoured">
+			<h2>Burger Heaven</h2>
+			{{#each burgers}}
+				{{#if this.devoured}}
+				  <div class="burger"><span>#{{id}}</span> {{burger_name}}</div>
+				{{/if}}
+			{{/each}}
+		</div>
+	</section>
+</div>
