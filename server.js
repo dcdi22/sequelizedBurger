@@ -4,6 +4,8 @@ var bodyParser = require("body-parser");
 var mysql = require("mysql");
 var app = express();
 var PORT = process.env.PORT || 3000;
+var db = require("./models");
+require("./routes/api-routes.js")(app);
 // const path = require('path');
 
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -21,10 +23,12 @@ app.set("view engine", "handlebars");
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-var routes = require("./controllers/burgers_controller.js");
+// var routes = require("./controllers/burgers_controller.js");
 
-app.use(routes);
+// app.use(routes);
 
-app.listen(PORT, function(){
-    console.log("Server listening on localhost:" + PORT);
-})
+db.sequelize.sync().then(function() {
+    app.listen(PORT, function() {
+      console.log("App listening on PORT " + PORT);
+    });
+  });
